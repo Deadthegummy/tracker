@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block content %}
+<ul>
+    {% for exercise in exercises %}
+    <li>
+        <a href="{{exercise.id}}/">{{exercise.date}}: {{exercise.exercisetype}} </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
