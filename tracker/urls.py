@@ -14,11 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from tracker import views
+from tracker.views import EventView, EventDetailView
 
 
 urlpatterns = [
      path('', views.index, name='index'),
-     path('<int:event_id>/', views.detail, name='detail')
+     path('<int:event_id>/', views.detail, name='detail'),
+     path('api/v1/events/', EventView.as_view()),
+     re_path('api/v1/event/(?P<event_id>.*)', EventDetailView.as_view())
 ]

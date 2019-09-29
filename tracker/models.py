@@ -7,7 +7,7 @@ class Event(models.Model):
     exercise_type = models.ForeignKey('Exercise', on_delete=models.PROTECT)
 
     def format_data(self):
-        return {'date': self.date, 'exercisetype': self.exercise_type.type, 'id': self.pk}
+        return {'date': self.date.isoformat(), 'exercisetype': self.exercise_type.type, 'id': self.pk}
 
 
 class Exercise(models.Model):
@@ -21,5 +21,5 @@ class Attribute(models.Model):
 
 
 class AttributeType(models.Model):
-    unit = models.CharField(max_length=6)
+    unit = models.CharField(max_length=12)
     name = models.CharField(max_length=25)
